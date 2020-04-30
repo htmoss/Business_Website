@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
   <link rel="stylesheet" href="./css/utilities.css">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/lightbox.min.css">
   <title>Welcome To EdgeLedger</title>
 </head>
 <body id="home">
   <header class="hero">
-    <div id="navbar" class="navbar">
+    <div id="navbar" class="navbar top">
       <h1 class="logo">
         <span class="text-primary"><i class="fas fa-book-open"></i> Edge</span>Ledger
       </h1>
@@ -65,7 +67,7 @@
             <h4>What You Are Looking For</h4>
             <h2>We provide the ultimate solutions</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae optio possimus exercitationem error? Vero sed, officiis nemo deserunt culpa maxime?</p>
-            <a href="#" class="btn btn-outline">
+            <a href="#cases" class="btn btn-outline">
               <i class="fas fa-chevron-right"></i>
               Read More
             </a>
@@ -83,20 +85,36 @@
       </header>
       <div class="row picture">
         <div class="column">
-          <img src="img/cases/cases1.jpg" alt="Case 1">
-          <img src="img/cases/cases2.jpg" alt="Case 2">
+          <a href="img/cases/cases1.jpg" data-lightbox="cases" data-title="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+            <img src="img/cases/cases1.jpg" alt="Case 1">
+          </a>
+          <a href="img/cases/cases2.jpg" data-lightbox="cases" data-title="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+            <img src="img/cases/cases2.jpg" alt="Case 2">
+          </a>
         </div>
         <div class="column">
-          <img src="img/cases/cases3.jpg" alt="Case 3">
-          <img src="img/cases/cases4.jpg" alt="Case 4">
+          <a href="img/cases/cases3.jpg" data-lightbox="cases" data-title="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+            <img src="img/cases/cases3.jpg" alt="Case 3">
+          </a>
+          <a href="img/cases/cases4.jpg" data-lightbox="cases" data-title="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+            <img src="img/cases/cases4.jpg" alt="Case 4">
+          </a>
         </div>
         <div class="column">
-          <img src="img/cases/cases5.jpg" alt="Case 5">
-          <img src="img/cases/cases6.jpg" alt="Case 6">
+          <a href="img/cases/cases5.jpg" data-lightbox="cases" data-title="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+            <img src="img/cases/cases5.jpg" alt="Case 5">
+          </a>
+          <a href="img/cases/cases6.jpg" data-lightbox="cases" data-title="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+            <img src="img/cases/cases6.jpg" alt="Case 6">
+          </a>
         </div>
         <div class="column">
-          <img src="img/cases/cases7.jpg" alt="Case 7">
-          <img src="img/cases/cases8.jpg" alt="Case 8">
+          <a href="img/cases/cases7.jpg" data-lightbox="cases" data-title="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+            <img src="img/cases/cases7.jpg" alt="Case 7">
+          </a>
+          <a href="img/cases/cases8.jpg" data-lightbox="cases" data-title="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+            <img src="img/cases/cases8.jpg" alt="Case 8">
+          </a>
         </div>
       </div>
     </section>
@@ -191,5 +209,57 @@
     </div>
     <h4>Copyright &copy; 2020 - EdgeLedger</h4>
   </footer>
+
+  <script
+    src="https://code.jquery.com/jquery-3.5.0.min.js"
+    integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+    crossorigin="anonymous">
+  </script>
+  <script src="js/lightbox.min.js"></script>
+  <script>
+    //Custom jQuery script
+    const navbar = document.getElementById('navbar');
+    let scrolled = false;
+
+    window.onscroll = function(){
+      if(window.pageYOffset > 100) {
+        navbar.classList.remove('top');
+        if(!scrolled){
+          navbar.style.transform = 'translateY(-70px)';
+        }
+        setTimeout(function() {
+          navbar.style.transform = 'translateY(0)';
+          scrolled = true;
+        }, 200);
+      }
+      else{
+        navbar.classList.add('top');
+        scrolled = false;
+      }
+      
+    };
+
+    // Smooth Scrolling
+    $('#navbar a, .btn').on('click', function (e) {
+      if(this.hash !== '') {
+        e.preventDefault();
+
+        const hash = this.hash;
+
+        $('html, body').animate(
+          {
+            scrollTop: $(hash).offset().top - 100,
+          },
+          800
+        );
+      }
+    });
+
+
+  </script>
+
+
+
+
 </body>
 </html>
